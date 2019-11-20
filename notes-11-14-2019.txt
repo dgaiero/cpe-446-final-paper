@@ -1,0 +1,24 @@
+Final Paper
+- Background on CMOS
+- Background on Radiation Events (with regards to CMOS)
+- How radiation can interfere with CMOS stuffs
+- How is this problem currently being addressed?
+
+- Our thing
+   - Aiming for transient and peppermint faults.
+   - Use MATLAB to identify location of faults in image
+   - Remove faults from image (average area around it?)
+   - profit!
+
+
+Cameras in harsh environments are exposed to high dosages to radiation. These doses are difficult to deal with in the sensor (because the sensor is exposed)
+- Currently, some solutions use hardware changes to make the sensors rad-hard.
+   - Good for environments where you cannot replace the camera, but this is extremely expensive.
+
+Use software to identify pixels that are "out of place" - one pixel that is white, and if a CMOS sensor is heavly damaged by radiation wave - cmos is broken
+ - We are saying we can take a software approach to try and identify different types of faults
+ 
+- Also look at noise in images (not just harsh environments) - what has been done in that area.
+   - What are the other sources of nosie and what are the techniques they use to de-noise.
+   - Errors from DSP
+   - Noise introduced from high-sensitivity sensors
