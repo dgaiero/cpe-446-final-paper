@@ -1,6 +1,7 @@
-!Frames - conv.m4v
-*.m4v
-*.avi
 /design/slprj
 /design/impl_dsgn_report.htmx
 /design/impl_dsgn_sfun.mexw64
+/design/video-output/noiseIdentification.avi
+/design/video-output/noisyImage.avi
+/design/video-output/postNR.avi
+/design/video-output/reference.avi
