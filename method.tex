@@ -1,0 +1,15 @@
+\subsection{Tools Used}
+The model was designed using MATLAB\textregisteredmark\ and SIMULINK\textregisteredmark\ R2018B. Analysis was also performed using this software. Additionally, to aid testing, a generic video file was used provided by \hyperlink{https://blogs.unity3d.com/2016/11/28/free-vfx-image-sequences-flipbooks/}{Unity3D}.
+\subsection{Assumptions}
+The video file used had dimensions of 400x400px. Inside the parameters of certain blocks in the final design, this assumption was used and the model will need to be altered to work with video files of other dimensions.
+\subsection{Design}
+The top level design is shown in Fig. \ref{fig:sysSpecs}. A general overview of this design is presented in this section with in-depth descriptions in later sections.
+\begin{figure}[H]
+    \includegraphics[width=0.5\textwidth]{impl_dsgn}
+    \caption{Top Level System Design}
+    \label{fig:sysSpecs}
+\end{figure}
+\par An input video is fed into the \verb!From Multimedia File! block. Each color frame is converted to black and white to make image processing easier. Additionally, the \verb!EOF! output of the \verb!From Multimedia File! is fed into a frame counter's reset port, which is reset every time the video is restarted.
+\par From this point, the video is sent to a noise generation unit. Since this model is a proof of concept, it is important to have a reference video as well as a video file with noise added. The noise generation block adds both permanent and transient noise.
+\par After the frame has noise added, it is sent to two blocks, one to identify permanent noise in the frame, and another to filter out the noise in the frame.
+\par Post noise generation, noise filtering, noise identification, and the reference frames are output to a video display as well as logged to a video file throughout simulation. Frame count information as well as other diagnostic and verification information is overlayed on top of the video frames to aid in analysis.
