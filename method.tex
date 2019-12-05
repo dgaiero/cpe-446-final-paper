@@ -3,12 +3,12 @@ The model was designed using MATLAB\textregisteredmark\ and SIMULINK\textregiste
 \subsection{Assumptions}
 The video file used has dimensions of 400x400px. Inside the parameters of certain blocks in the SIMULINK\textregisteredmark\ file this assumption was used and the model will need to be altered to work with video files of other dimensions. Additionally, the input video file was 30fps which is assumed in the frame counter module.
 \subsection{Design}
-The top level design is shown in Fig. \ref{fig:sysSpecs}. A general overview of this design is presented in this section with in-depth descriptions in later sections.
-\begin{figure}[H]
-    \includegraphics[width=\linewidth]{impl_dsgn}
+The top level design is shown in Fig. \ref{fig:sysSpecs}. Should the reader wish to download a copy of this design, the latest working copy can be found at \hyperlink{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/impl_dsgn.slx}{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/impl\_dsgn.slx}. The SIMULINK\textregisteredmark\ library used during development can also be found \hyperlink{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/library.slx}{here} A general overview of this design is presented in this section with in-depth descriptions in later sections.
+\begin{figure*}
+    \includegraphics[width=\textwidth]{impl_dsgn}
     \caption{Top Level System Design}
     \label{fig:sysSpecs}
-\end{figure}
+\end{figure*}
 \par An input video is fed into the \verb!From Multimedia File! block. Each color frame is converted to black and white to make image processing easier. Additionally, the \verb!EOF! output of the \verb!From Multimedia File! is fed into a frame counter's reset port, which is reset every time the video is restarted.
 \par From this point, the video is sent to a noise generation unit. Since this model is a proof of concept, it is important to have a reference video as well as a video file with noise added. The noise generation block adds both permanent and transient noise.
 \par After the frame has noise added, it is sent to two blocks, one to identify permanent noise in the frame, and another to filter out the noise in the frame.
@@ -43,13 +43,20 @@ Noise filtering is accomplished by using a modified median filter.
     \caption{Noise Filtering using a modified median filter}
     \label{fig:medianFilter}
 \end{figure}
- \par Each pixel of the input frame is checked to see if it is pure black or white to determine if noise is present in that location. To reduce noise in the image, a median filter\footnote{For reference on median filters, please reference\hyperlink{https://homepages.inf.ed.ac.uk/rbf/HIPR2/median.htm}{Spatial Filters - Median Filters by Robert Fisher, Simon Perkins, Ashley Walker, Erik Wolfart}} is used with neighborhood size of 3x3. Fig. \ref{fig:medianFilter} outlines the construction of this noise reduction system. Since this is a somewhat idealized proof of concept design, the pixel must meet the pure white or pure black criteria. In a more real life scenario, some margin should be factored to compensate for noise in transmission to the processing unit.
+ \par Each pixel of the input frame is checked to see if it is pure black or white to determine if noise is present in that location. To reduce noise in the image, a median filter\footnote{For reference on median filters, please reference \hyperlink{https://homepages.inf.ed.ac.uk/rbf/HIPR2/median.htm}{Spatial Filters - Median Filters by Robert Fisher, Simon Perkins, Ashley Walker, Erik Wolfart}} is used with neighborhood size of 3x3. Fig. \ref{fig:medianFilter} outlines the construction of this noise reduction system. Since this is a somewhat idealized proof of concept design, the pixel must meet the pure white or pure black criteria. In a more real life scenario, some margin should be factored to compensate for noise in transmission to the processing unit.
  \par If the pixel is not deemed to be noise, then the original pixel is passed through. However, if the pixel is deemed to be noisy,  then the median filtered pixel is passed through.
- \par This module is verified using the peak signal-to-noise-ratio compared to the reference image. This is done in the \verb!Verification! block. The PSNR is calculated using the mean-square-error or MSE. The MSE represents the amount the reference image differs from the test image, and PSNR is a measure of the peak error and is calculated by dividing the maximum data type range by the MSE. This document uses floating point, therefore the maximum range is one\cite{mathworks}.
  \subsubsection{Noise Identification Sub module}
  Noise identification is accomplished by averaging eight frames and isolating the parts of the frame that is the most common amongst the eight frames.
  \begin{figure}[H]
     \includegraphics[width=\linewidth]{impl_dsgn_Noise Identification}
     \caption{Noise Identification}
     \label{fig:noiseID}
+\end{figure}
+Eight frames are captured, each offset by eight frames as shown in Fig. \ref{fig:noiseID}. Because of the offset, it takes sixty-four frames to achieve accurate results. All eight frames are averaged and each pixel value is queried to determine if it meets the criteria for a permanent fault, as shown using the switch to the right of Fig. \ref{fig:noiseID}. The output of this module is the identified noise. This is fed into a video overlay block to overlay red dots for each occurrence of a permanent fault in the reference video with noise added.
+
+\par The permanent noise count is also captured. This is done in the permanent noise count block, as outlined in Fig. \ref{fig:permanentNoiseCount}. This block operates similarly to the noise identification verification, except noise is identified with a switch to set the noise threshold level.
+ \begin{figure}[H]
+    \includegraphics[width=\linewidth]{impl_dsgn_Permanent Noise Count}
+    \caption{Permanent Noise Count Block}
+    \label{fig:permanentNoiseCount}
 \end{figure}
