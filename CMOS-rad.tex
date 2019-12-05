@@ -4,7 +4,7 @@
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{algorithmic}
 \usepackage{graphicx}
-\graphicspath{{./design/pdf-snapshots/cropped/}{./assets/}{./design/video-output/}}
+\graphicspath{{./design/pdf-snapshots/cropped/}{./assets/}{./design/video-output/noise-identification/}{./design/video-output/noisy-image/}{./design/video-output/post-nr/}{./design/video-output/reference/}}
 \usepackage{textcomp}
 \usepackage{xcolor}
 \usepackage{float}
@@ -20,6 +20,9 @@
     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
     
 \newcommand{\textregisteredmark}{\textsuperscript{\tiny\textregistered}}
+% \def\figautorefname{Fig.}
+\renewcommand{\figureautorefname}{Fig.}
+\newcommand{\subfigureautorefname}{\figureautorefname}
 
 \begin{document}
 
@@ -29,8 +32,7 @@
         John~Doe,~\textit{\href{mailto:jdoe@email.com}{jdoe@email.com}}}
 
 \maketitle
-%Related Work
-%Radiation Background
+
 %Conclusion
 %References
 \begin{abstract}
@@ -56,6 +58,8 @@ Dark currents are the main source of faults due to radiation and are therefore t
 \input{method}
 \section{Results}
 \input{results}
+\section{Conclusion}
+\input{conclusion}
 
 \bibliographystyle{IEEEtran}
 {\footnotesize
