@@ -5,10 +5,11 @@ The video file used has dimensions of 400x400px. Inside the parameters of certai
 \subsection{Design}
 The top level design is shown in \autoref{fig:sysSpecs}. Should the reader wish to download a copy of this design, the latest working copy can be found at \hyperlink{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/impl_dsgn.slx}{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/impl\_dsgn.slx}. The SIMULINK\textregisteredmark\ library used during development can also be found \hyperlink{https://github.com/dgaiero/cpe-446-final-paper/blob/master/design/library.slx}{here} A general overview of this design is presented in this section with in-depth descriptions in later sections.
 \begin{figure*}
-    \includegraphics[width=\textwidth]{impl_dsgn}
+    \includegraphics[width=1\textwidth]{impl_dsgn}
     \caption{Top Level System Design}
     \label{fig:sysSpecs}
 \end{figure*}
+\medskip
 \par An input video is fed into the \verb!From Multimedia File! block. Each color frame is converted to black and white to make image processing easier. Additionally, the \verb!EOF! output of the \verb!From Multimedia File! is fed into a frame counter's reset port, which is reset every time the video is restarted.
 \par From this point, the video is sent to a fault injection unit. Since this model is a proof of concept, it is important to have a reference video as well as a video file with faults injected. The fault injection block adds both permanent and transient faults.
 \par After the frame has faults added, it is sent to two blocks, one to identify permanent faults in the frame, and another to filter out the faults in the frame.
