@@ -29,25 +29,27 @@
 \title{Correction Techniques for Image Faults}
 
 \author{Dominic~Gaiero,~\textit{\href{mailto:dgaiero@calpoly.edu}{dgaiero@calpoly.edu}}
-        John~Doe,~\textit{\href{mailto:jdoe@email.com}{jdoe@email.com}}}
+        Nicholas Serres,~\textit{\href{mailto:nserres@calopoly.edu}{nserres@calpoly.edu}}}
 
 \maketitle
 
 \begin{abstract}
-Faults in image sensors can lead to a large drop in image reliability and quality.  The image sensor is one of the most susceptible components to faults, and is one critical components in a camera system.  This paper explores fault correction of an image sensor through passing the image through a filter to correct the image and potentially identify transient and permanent faults.  This solution is tailored for applications where radiation is present, but has applications in wider fields.  
+Faults in image sensors can lead to a large drop in image reliability and quality.  Image sensors are one of the most susceptible components to faults, and is one critical components in a camera system.  This paper explores fault detection and correction of an image sensor through passing the image through a filter to correct the image and potentially identify transient and permanent faults.  This paper is focused on applications in extreme environments, but applies to wider fields.   
 \end{abstract}
 
 
 
-\begin{IEEEkeywords}
-CMOS, CIS
-\end{IEEEkeywords}
+% \begin{IEEEkeywords}
+% CMOS, CIS
+% \end{IEEEkeywords}
 
 \section{Introduction}%% Can you also try and add some paragraphs? You can use the \par command.
 \IEEEPARstart{I}{n} this project the effectiveness radiation hardening a device through software was tested.  This expands on past methods by having picture correction happen in the data processing phase, rather than redesigning from a hardware level. While using software to mitigate the effects of radiation on sensors is not a permanent solution, the benefits of significant reduced costs and development make this solution very appealing for less critical applications. This project targets uses in security at a radiation plant or non-critical cameras in space or other radiation intensive conditions. This will allow systems that use cameras in these conditions to operate with more reliability and allow for more clear images despite the conditions and operation of the cameras.  Also, this solution aims to give more information on the nature of a fault in a sensor to a user, unlike traditional image processing techniques.
 
 \section{CMOS Background}
 \input{background}
+
+
 
 \section{Dark Currents}
 \input{dark_current.tex}
