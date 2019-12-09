@@ -53,9 +53,9 @@ Fault Correction is accomplished by using a modified median filter.
     \caption{Fault Identification}
     \label{fig:faultID}
 \end{figure}
-Eight frames are captured, each offset by eight frames as shown in \autoref{fig:faultID}. Because of the offset, it takes sixty-four frames to achieve accurate results. All eight frames are averaged and each pixel value is queried to determine if it meets the criteria for a permanent fault, as shown using the switch to the right of \autoref{fig:faultID}. The output of this module is the identified faults. This is fed into a video overlay block to overlay red dots for each occurrence of a permanent fault in the reference video with faults injected.
+Eight frames are captured, each offset by eight frames as shown in \autoref{fig:faultID}. Because of the offset, it takes sixty-four frames to achieve accurate results. All eight frames are averaged and each pixel value is queried to determine if it meets the criteria for a permanent fault, as shown using the switch to the right of \autoref{fig:faultID}. The output of this module is the identified faults. This is fed into a video overlay block to overlay red dots for each occurrence of a permanent fault in the reference video with faults injected. 
 
-\par The permanent fault count is also captured. This is done in the permanent fault count block, as outlined in \autoref{fig:permanentFaultCount}. This block operates similarly to the fault Identification verification, except noise is identified with a switch to set the noise threshold level.
+\par The permanent fault count is also captured. This is done in the permanent fault count block, as outlined in \autoref{fig:permanentFaultCount}. This block operates similarly to the fault Identification verification, except noise is identified with a switch to set the noise threshold level. 
  \begin{figure}[H]
     \includegraphics[width=\linewidth]{impl_dsgn_Permanent Fault Count}
     \caption{Permanent Fault Count Block}
